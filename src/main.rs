@@ -52,15 +52,11 @@ async fn update_workspace_name(
     };
 
     let mut icons = icons.join(" ");
-    if icons.len() > 0 {
-        icons.push_str(" ");
-
-        if config.should_force_ltr() {
-            let format_ltr = "\u{202D}";
-            let format_pop = "\u{202C}";
-            icons.insert_str(0, format_ltr);
-            icons.push_str(format_pop);
-        }
+    if icons.len() > 0 && config.should_force_ltr() {
+        let format_ltr = "\u{202D}";
+        let format_pop = "\u{202C}";
+        icons.insert_str(0, format_ltr);
+        icons.push_str(format_pop);
     }
 	
     let new_name = if icons.len() > 0 {
